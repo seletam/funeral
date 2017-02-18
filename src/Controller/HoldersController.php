@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
-use \App\Controller\PdfController;//Controller\PdfController;
+use App\Controller\PDF; //Controller\PdfController;
 
 /**
  * Holders Controller
@@ -256,13 +256,14 @@ class HoldersController extends AppController {
 	    'contain' => ['Additional', 'Address', 'Dependant', 'Payments', 'Phones']
 	]);
 
-	$pdf = new PDF;
+	$pdf = new PDF();
 	$title = 'Invoice';
-	$pdf->SetTitle($title);
-	$pdf->SetAuthor('Testing');
-	$pdf->PrintChapter(1, 'A RUNAWAY REEF', '20k_c1.txt');
-	$pdf->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt');
-	$pdf->Output();
+	debug($pdf);
+	//$this->PDF->Footer();
+	/* $this->PDF->SetAuthor('Testing');
+	  $this->PDF->PrintChapter(1, 'A RUNAWAY REEF', '20k_c1.txt');
+	  $this->PDF->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt'); */
+	//$this->PDF->Output();
 
 	$this->set('holder', $holder);
 	$this->set('_serialize', ['holder']);

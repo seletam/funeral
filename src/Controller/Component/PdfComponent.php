@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-App::uses('Vendor', 'fpdf');
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -74,11 +73,3 @@ class PDF extends AppController {
     }
 
 }
-
-$pdf = new PDF();
-$title = 'Invoice';
-$pdf->SetTitle($title);
-$pdf->SetAuthor('Testing');
-$pdf->PrintChapter(1, 'A RUNAWAY REEF', '20k_c1.txt');
-$pdf->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt');
-$pdf->Output();
