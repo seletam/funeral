@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Model/Entity/Bankcard.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Model/Entity/Payment.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Payments/index.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Model/Table/PaymentsTable.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Holders/index.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Controller/HoldersController.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Controller/AppController.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Pages/home.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Layout/default.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Holders/view.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Controller/AddressController.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Controller/PaymentsController.php</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Payments/add.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Holders/accounts.ctp</file>
+            <file>file:/C:/xampp/htdocs/hiswinwe/src/Template/Holders/create.ctp</file>
+        </group>
+    </open-files>
+</project-private>
