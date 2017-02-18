@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use \Cake\I18n\Time;
 
+App::import('fpdf', 'fpdf.php');
+
 /**
  * Holders Controller
  *
