@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
-use \FPDF;
+use \App\Controller\ReceiptController;
 
 /**
  * Holders Controller
@@ -251,13 +251,27 @@ class HoldersController extends AppController {
     }
 
     public function pdfreport() {
-	require_once(ROOT . DS . 'vendor' . DS . "fpdf" . DS . "fpdf.php");
-	$this->layout = "pdfreport";
-	$this->set('fpdf', new FPDF('P', 'mm', 'A4'));
-	$this->set('data', 'Hello', 'PDF world');
+	$this->fileHeaders();
+	$pdf = new ReceiptController();
 
+	$holder = $this->Holders->find('all')->first();
+
+
+	$this->set('holder', $holder); //new FPDF('P', 'mm', 'A4'));
+	$this->set('pdf', $pdf); //new FPDF('P', 'mm', 'A4'));
+	//$this->set('data', 'testing');
 	//$this->redirect('pdfreport');
 	//$this->set('_serialize', ['holder']);
+    }
+
+    public function fileHeaders() {
+	header("Content-type: application/pdf"); //ttachment;filename='file.pdf'");
+	header("Content-type: application/octet-stream"); //ttachment;filename='file.pdf'");
+	header("Pragma: public"); //ttachment;filename='file.pdf'");
+	header("Content_Transfer-Encoding: binary"); //ttachment;filename='file.pdf'");
+	header("Expires: 0"); //ttachment;filename='file.pdf'"); //ttachment;filename='file.pdf'");
+	header("Content-Disposition:inline;filename='file.pdf'");
+	header("Accept-Ranges: bytes");
     }
 
     /**
