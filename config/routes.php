@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration
  *
@@ -17,7 +18,6 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
@@ -42,10 +42,10 @@ use Cake\Routing\Route\DashedRoute;
  *
  */
 Router::defaultRouteClass(DashedRoute::class);
-Router::parseExtensions('pdf');
+//Router::parseExtensions('pdf');
 Router::scope('/', function (RouteBuilder $routes) {
     $routes->extensions(['json', 'xml']);
-    
+
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
@@ -56,7 +56,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->connect('/pages/home/', ['controller' => 'Pages', 'action' => 'display']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -76,6 +76,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
+
 
 /**
  * Load all plugin routes.  See the Plugin documentation on
