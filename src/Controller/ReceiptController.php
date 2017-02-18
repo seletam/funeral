@@ -7,14 +7,17 @@
  */
 
 namespace App\Controller;
-use \App;
+
+use \App\Controller\FpdfController;
+
 /**
  * Description of ReceiptController
  *
  * @author Mootwane
  */
-class ReceiptController extends AppController{
-     public function Header() {
+class ReceiptController extends FpdfController {
+
+    public function Header() {
 	global $title;
 
 	// Arial bold 15
@@ -75,4 +78,5 @@ class ReceiptController extends AppController{
 	$this->ChapterTitle($num, $title);
 	$this->ChapterBody($file);
     }
+
 }
