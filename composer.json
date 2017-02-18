@@ -27,7 +27,7 @@
 	    "Vendor\\": "fpdf.php",
             "Shell\\": "./plugins/Shell/src"
         },
-	"files": [
+	"class-map": [
             "./Vendor/fpdf.php"
         ]
     },

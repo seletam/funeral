@@ -1,4 +1,5 @@
 <?php
-heade('Content-Disposition: attachment; filename="receipt.pdf"');
+header('Content-Disposition: attachment; filename="receipt.pdf"');
+echo $holder;
 
 

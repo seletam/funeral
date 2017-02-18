@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
+use \FPDF;
 
 /**
  * Holders Controller
@@ -250,9 +251,9 @@ class HoldersController extends AppController {
     }
 
     public function pdfreport() {
-	App::uses("Vendor", "fpdf");
+	require_once(ROOT . DS . 'vendor' . DS . "fpdf" . DS . "fpdf.php");
 	$this->layout = "pdfreport";
-	$this->set('fpdf', FPDF('P', 'mm', 'A4'));
+	$this->set('fpdf', new FPDF('P', 'mm', 'A4'));
 	$this->set('data', 'Hello', 'PDF world');
 
 	//$this->redirect('pdfreport');
