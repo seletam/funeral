@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use \Cake\I18n\Time;
 
-App::import('fpdf', 'fpdf.php');
-
 /**
  * Holders Controller
  *
@@ -252,10 +250,11 @@ class HoldersController extends AppController {
     }
 
     public function pdfreport() {
+	App::uses("Vendor", "fpdf");
 	$this->layout = "pdfreport";
-	$this->set('fpdf', new \FPDF('P', 'mm','A4'));
+	$this->set('fpdf', FPDF('P', 'mm', 'A4'));
 	$this->set('data', 'Hello', 'PDF world');
-	
+
 	//$this->redirect('pdfreport');
 	//$this->set('_serialize', ['holder']);
     }

@@ -24,10 +24,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "src",
+	    "Vendor\\": "fpdf.php",
             "Shell\\": "./plugins/Shell/src"
         },
 	"files": [
-            "./vendor/fpdf/fpdf.php"
+            "./Vendor/fpdf.php"
         ]
     },
     "autoload-dev": {
