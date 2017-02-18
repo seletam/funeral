@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
+use \App\Controller\PdfController;//Controller\PdfController;
 
 /**
  * Holders Controller
@@ -249,7 +250,8 @@ class HoldersController extends AppController {
 	$this->set('_serialize', ['holder']);
     }
 
-    public function pdfreport($id = null) {
+    public function pdfreport() {
+	$id = 87;
 	$holder = $this->Holders->get($id, [
 	    'contain' => ['Additional', 'Address', 'Dependant', 'Payments', 'Phones']
 	]);
