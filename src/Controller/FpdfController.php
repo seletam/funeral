@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+define('FPDF_VERSION','1.81');
 /**
  * Description of FpdfController
  *

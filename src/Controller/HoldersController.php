@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
-use \App\Controller\ReceiptController; //Controller\PdfController;
+App::import('Vendor', 'Fpdf', array('file' => 'fpdf/fpdf.php'));
 
 /**
  * Holders Controller
@@ -251,23 +251,12 @@ class HoldersController extends AppController {
     }
 
     public function pdfreport() {
-	$id = 87;
-	$holder = $this->Holders->get($id, [
-	    'contain' => ['Additional', 'Address', 'Dependant', 'Payments', 'Phones']
-	]);
-
-	$pdf = new ReceiptController();
-	//$pdf = new PDF();
-	//$title = 'Invoice';
-	debug($pdf->Header());
-	//$this->PDF->Footer();
-	/* $this->PDF->SetAuthor('Testing');
-	  $this->PDF->PrintChapter(1, 'A RUNAWAY REEF', '20k_c1.txt');
-	  $this->PDF->PrintChapter(2, 'THE PROS AND CONS', '20k_c2.txt'); */
-	//$this->PDF->Output();
-
-	$this->set('holder', $holder);
-	$this->set('_serialize', ['holder']);
+	$this->layout = "pdfreport";
+	$this->set('fpdf', new \FPDF('P', 'mm','A4'));
+	$this->set('data', 'Hello', 'PDF world');
+	
+	//$this->redirect('pdfreport');
+	//$this->set('_serialize', ['holder']);
     }
 
     /**

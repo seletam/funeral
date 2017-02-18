@@ -1,2 +1,4 @@
 <?php
-debug($holder);
+heade('Content-Disposition: attachment; filename="receipt.pdf"');
+
+
