@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\I18n\Time;
-use App\Controller\PDF; //Controller\PdfController;
+use \App\Controller\ReceiptController; //Controller\PdfController;
 
 /**
  * Holders Controller
@@ -256,9 +256,10 @@ class HoldersController extends AppController {
 	    'contain' => ['Additional', 'Address', 'Dependant', 'Payments', 'Phones']
 	]);
 
-	$pdf = new PDF();
-	$title = 'Invoice';
-	debug($pdf);
+	$pdf = new ReceiptController();
+	//$pdf = new PDF();
+	//$title = 'Invoice';
+	debug($pdf->Header());
 	//$this->PDF->Footer();
 	/* $this->PDF->SetAuthor('Testing');
 	  $this->PDF->PrintChapter(1, 'A RUNAWAY REEF', '20k_c1.txt');
