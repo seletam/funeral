@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -23,8 +24,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Holder[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Holder findOrCreate($search, callable $callback = null)
  */
-class HoldersTable extends Table
-{
+class HoldersTable extends Table {
 
     /**
      * Initialize method
@@ -32,29 +32,28 @@ class HoldersTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
-        parent::initialize($config);
+    public function initialize(array $config) {
+	parent::initialize($config);
 
-        $this->table('holders');
-        $this->displayField('title');
-        $this->primaryKey('id');
+	$this->table('holders');
+	$this->displayField('title');
+	$this->primaryKey('id');
 
-        $this->hasMany('Additional', [
-            'foreignKey' => 'holder_id'
-        ]);
-        $this->hasMany('Address', [
-            'foreignKey' => 'holder_id'
-        ]);
-        $this->hasMany('Dependant', [
-            'foreignKey' => 'holder_id'
-        ]);
-        $this->hasMany('Payments', [
-            'foreignKey' => 'holder_id'
-        ]);
-        $this->hasMany('Phones', [
-            'foreignKey' => 'holder_id'
-        ]);
+	$this->hasMany('Additional', [
+	    'foreignKey' => 'holder_id'
+	]);
+	$this->hasMany('Address', [
+	    'foreignKey' => 'holder_id'
+	]);
+	$this->hasMany('Dependant', [
+	    'foreignKey' => 'holder_id'
+	]);
+	$this->hasMany('Payments', [
+	    'foreignKey' => 'holder_id'
+	]);
+	$this->hasMany('Phones', [
+	    'foreignKey' => 'holder_id'
+	]);
     }
 
     /**
@@ -63,43 +62,52 @@ class HoldersTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+    public function validationDefault(Validator $validator) {
+	$validator
+		->integer('id')
+		->allowEmpty('id', 'create');
 
-        $validator
-            ->allowEmpty('title');
+	$validator
+		->allowEmpty('title');
 
-        $validator
-            ->allowEmpty('first_names');
+	$validator
+		->allowEmpty('first_names');
 
-        $validator
-            ->allowEmpty('surname');
+	$validator
+		->allowEmpty('surname');
 
-        $validator
-            ->allowEmpty('idnumber');
+	$validator
+		->allowEmpty('idnumber');
 
-        $validator
-            ->dateTime('dob')
-            ->allowEmpty('dob');
+	$validator
+		->dateTime('dob')
+		->allowEmpty('dob');
 
-        $validator
-            ->allowEmpty('package');
+	$validator
+		->allowEmpty('package');
 
-        $validator
-            ->integer('premium')
-            ->allowEmpty('premium');
+	$validator
+		->integer('premium')
+		->allowEmpty('premium');
 
-        $validator
-            ->dateTime('creation_date')
-            ->allowEmpty('creation_date');
+	$validator
+		->dateTime('creation_date')
+		->allowEmpty('creation_date');
 
-        $validator
-            ->dateTime('modified_date')
-            ->allowEmpty('modified_date');
+	$validator
+		->dateTime('modified_date')
+		->allowEmpty('modified_date');
 
-        return $validator;
+	return $validator;
     }
+
+    public $validate = array(
+	'idnumber' => array(
+	    'unique' => array(
+		'rule' => array('checkUnique', array('idnumber', 'id'), false),
+		'message' => 'A account with this ID Number already exist'
+	    )
+	)
+    );
+
 }

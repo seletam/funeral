@@ -169,92 +169,54 @@
             <div class="panel-heading">Dependant(s)</div>
             <div class="panel-body">
 
-                <div class="content-box-large box-with-header">
-		    <div id="tab_logic">
-			<div class="row" id="addr">
-			    <div class="col-lg-3" id="na">
-				<input type="text" name='named[]'  placeholder='Name' class="form-control"/>
-			    </div>
-			    <div class="col-lg-3">
-				<input type="text" name='surnamed[]'  placeholder='Surname' class="form-control"/>
-			    </div>
-			    <div class="col-lg-2">
-				<input type="text" name='idnumberd[]'  placeholder='IDNumber' class="form-control"/>
-			    </div>
-			    <div class="col-lg-2">
-				<input type='file' name='iddocd[]' placeholder='Attachment' class='form-control input-md'/>
-			    </div>
-			    <div class="col-lg-2">
-				<select type="text" name="locald[]" class="form-control">
-				    <option name="male" value="0">Yes</option>
-				    <option name="Female" value="1">No</option>
-				</select>
+                <div id="dependant_fields">
+
+		</div>
+		<div class="col-sm-3 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="names" name="dependant[names]" value="" placeholder="Names">
+		    </div>
+		</div>
+		<div class="col-sm-3 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="surname" name="dependant[surname1]" value="" placeholder="Surname">
+		    </div>
+		</div>
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="idnumber" name="dependant[idnumber1]" value="" placeholder="ID Number">
+		    </div>
+		</div>
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<select class="form-control" name="dependant[Gender1]">
+			    <option value="0">Male</option>
+			    <option value="1">Female</option>
+			</select>
+		    </div>
+		</div>
+
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<div class="input-group">
+			    <select class="form-control" name="dependant[local1]">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+			    </select>
+			    <div class="input-group-btn">
+				<button class="btn btn-success" type="button"  onclick="dependant_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
 			    </div>
 			</div>
 		    </div>
-    <!--  <table class="table table-striped table-hover" id="tab_logic">
-	<thead>
-	    <tr >
-		<th class="text-center">
-		    #
-		</th>
-		<th class="text-center">
-		    Names
-		</th>
-		<th class="text-center">
-		    Surname
-		</th>
-		<th class="text-center">
-		    ID Number
-		</th>
-		<th class="text-center">
-		    Attach ID Scan
-		</th>
-		<th class="text-center">
-		    Local
-		</th>
-    
-	    </tr>
-	</thead>
-	<tbody>
-	    <tr id='addr0'>
-		<td>
-		    1
-		</td>
-		<td>
-		    
-		</td>
-		<td>
-		    <input type="text" name='surnamed[]' placeholder='Surname' class="form-control"/>
-		</td>
-		<td>
-		    <input type="text" name='idnumberd[]' placeholder='IDNumber' class="form-control"/>
-		</td>
-		<td>
-		    <input type="file" name='iddocd[]' placeholder='Attachment' class="form-control"/>
-		</td>
-		<td>
-		    <select type="text" name="locald[]" class="form-control">
-			<option name="male" value="0">Yes</option>
-			<option name="Female" value="1">No</option>
-		    </select>
-		</td>
-	    </tr>
-	    <tr id='addr1'></tr>
-	</tbody>
-    </table>-->
-                    <ul class="pager wizard">
-                        <!--<li class="previous first disabled" style="display:none;"><a href="javascript:void(0);">First</a></li>-->
-                        <li class="previous"><a href="javascript:void(0);">Previous</a></li>
-                        <li class="next last" style="display:none;"><a href="javascript:void(0);">Last</a></li>
-                        <li class="next" id="activate-step-4"><a href="javascript:void(0);">Next</a></li>
-                    </ul>
+		</div>
+		<div class="clear1"></div>
+		<ul class="pager wizard">
+		    <li class="previous first disabled" style="display:none;"><a href="javascript:void(0);">First</a></li>
+		    <!--<li class="previous"><a href="javascript:void(0);">Previous</a></li>-->
+		    <li class="next last" style="display:none;"><a href="javascript:void(0);">Last</a></li>
+		    <li class="next" id="activate-step-4"><a href="javascript:void(0);">Next</a></li>
+		</ul>
 
-                    <ul class="pager">
-                        <a id="add_row" class="btn btn-success pull-left">Add Row</a>
-                        <a id='delete_row' class="btn btn-danger pull-right">Delete Row</a>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -265,53 +227,44 @@
         <div class="panel panel-default">
             <div class="panel-heading">Additional Member(s)</div>
             <div class="panel-body">
-		<table class="table table-striped" id="members">
-		    <thead>
-			<tr>
-			    <th>Name</th>
-			    <th>Surname</th>
-			    <th>ID Number</th>
-			    <th>&nbsp;</th>
-			</tr>
-		    </thead>
-		    <tbody>
-			<?php
-			$key = isset($key) ? $key : '<%= key %>';
-			?>
-			<tr>
-			    <td><?= $this->Form->text("Dependant.{$key}.names") ?></td>
-			    <td><?= $this->Form->text("Dependant.{$key}.surname") ?></td>
-			    <td><?= $this->Form->text("Dependant.{$key}.idnumber") ?></td>
-			</tr>
-			<tr>
-			    <td><a href="#" class="add">Add member</a></td>
-			</tr>
-		    </tbody>
-		</table>
-		<!--<div id="education_fields">
-		    <div class="col-sm-4 nopadding">
-			<div class="form-group">
-			    <input type="text" class="form-control" id="Schoolname" name="addname[]" value="" placeholder="Name">
-			</div>
+		<div id="education_fields">
+
+		</div>
+		<div class="col-sm-3 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="names" name="additional[names]" value="" placeholder="Names">
 		    </div>
-		    <div class="col-sm-4 nopadding">
-			<div class="form-group">
-			    <input type="text" class="form-control" id="Major" name="addsurname[]" value="" placeholder="Surname">
-			</div>
+		</div>
+		<div class="col-sm-3 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="surname" name="additional[surname1]" value="" placeholder="Surname">
 		    </div>
-		    <div class="col-sm-4 nopadding">
-			<div class="form-group">
-			    <div class="input-group">
-				<input type="text" class="form-control" id="Degree" name="addidnumber[]" value="" placeholder="Id number">
-				<div class="input-group-btn">
-				    <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-				</div>
+		</div>
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<input type="text" class="form-control" id="idnumber" name="additional[idnumber1]" value="" placeholder="ID Number">
+		    </div>
+		</div>
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<select class="form-control" name="additional[Gender1]">
+			    <option value="0">Male</option>
+			    <option value="1">Female</option>
+			</select>
+		    </div>
+		</div>
+
+		<div class="col-sm-2 nopadding">
+		    <div class="form-group">
+			<div class="input-group">
+			    <input class="form-control" id="educationDate" name="additional[premium1]"/>
+			    <div class="input-group-btn">
+				<button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
 			    </div>
 			</div>
 		    </div>
-		    <div class="clear"></div>
-
-		</div>-->
+		</div>
+		<div class="clear"></div>
 		<ul class="pager wizard">
 		    <li class="previous first disabled" style="display:none;"><a href="javascript:void(0);">First</a></li>
 		    <!--<li class="previous"><a href="javascript:void(0);">Previous</a></li>-->
@@ -426,6 +379,26 @@
 
 
 
+    var room1 = 1;
+    function dependant_fields() {
+
+	room1++;
+	var objTo = document.getElementById('dependant_fields')
+	var divtest = document.createElement("div");
+	divtest.setAttribute("class", "form-group removeclass" + room1);
+	var rdiv = 'removeclass' + room1;
+	divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="names" name="dependant[names' + room1 + ']" placeholder="Name"></div></div>\n\
+	  <div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="surname" name="dependant[surname' + room1 + ']" value="" placeholder="Surname"></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"> <input type="text" class="form-control" id="idnumber" name="dependant[idnumber' + room1 + ']" value="" placeholder="ID Number"></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"> <select class="form-control" name="dependant[Gender"' + room1 + ']"><option value="0">Male</option><option value="1">Female</option></select></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="premium" name="dependant[premium' + room1 + ']" value="" placeholder="Id number"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_dependant_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div><div class="clear"></div>';
+
+	objTo.appendChild(divtest)
+    }
+    function remove_dependant_fields(rid) {
+	$('.removeclass' + rid).remove();
+    }
+
     var room = 1;
     function education_fields() {
 
@@ -434,12 +407,16 @@
 	var divtest = document.createElement("div");
 	divtest.setAttribute("class", "form-group removeclass" + room);
 	var rdiv = 'removeclass' + room;
-	divtest.innerHTML = '<div class="col-sm-4 nopadding"><div class="form-group"> <input type="text" class="form-control" id="addname" name="addname[]" value="0" placeholder="Name"></div></div>\n\
-<div class="col-sm-4 nopadding"><div class="form-group"> <input type="text" class="form-control" id="surname" name="addsurname[]" value="" placeholder="Surname"></div></div>\n\
-<div class="col-sm-4 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="addidnumber" name="addidnumber[]" value="" placeholder="Id number"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div><div class="clear"></div>';
+	divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="names" name="additional[names' + room + ']" placeholder="Name"></div></div>\n\
+	  <div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="surname" name="additional[surname' + room + ']" value="" placeholder="Surname"></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"> <input type="text" class="form-control" id="idnumber" name="additional[idnumber' + room + ']" value="" placeholder="ID Number"></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"> <select class="form-control" name="addtional[Gender"' + room + ']"><option value="0">Male</option><option value="1">Female</option></select></div></div>\n\
+	  <div class="col-sm-2 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="premium" name="additional[premium' + room + ']" value="" placeholder="Id number"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div><div class="clear"></div>';
 
 	objTo.appendChild(divtest)
     }
+
+
     function remove_education_fields(rid) {
 	$('.removeclass' + rid).remove();
     }

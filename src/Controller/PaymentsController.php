@@ -58,7 +58,7 @@ class PaymentsController extends AppController {
 	$time = Time::Now();
 	$status = array('0' => 'Paid', '1' => 'Cancelled');
 	$type = array('1' => 'Cash', '2' => 'Debit');
-	$ref = 'HIS' . date('d') . '09FFghrWIN' . rand(1, 9) . $id . 'NWE';
+	$ref = 'HIS' . date('d') . $id .  'FFghrWIN' . rand(0, 9) . $id . 'NWE';
 
 	if ($this->request->is('post')) {
 	    $payment = $this->Payments->patchEntity($payment, $this->request->data);
