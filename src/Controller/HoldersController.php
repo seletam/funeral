@@ -251,14 +251,14 @@ class HoldersController extends AppController {
     }
 
     public function pdfreport() {
-	$this->fileHeaders();
-	$pdf = new ReceiptController();
+	//$this->fileHeaders();
+	$pdf1 = new ReceiptController();
 
 	$holder = $this->Holders->find('all')->first();
 
 
 	$this->set('holder', $holder); //new FPDF('P', 'mm', 'A4'));
-	$this->set('pdf', $pdf); //new FPDF('P', 'mm', 'A4'));
+	$this->set('pdf1', $pdf1); //new FPDF('P', 'mm', 'A4'));
 	//$this->set('data', 'testing');
 	//$this->redirect('pdfreport');
 	//$this->set('_serialize', ['holder']);

@@ -23,15 +23,15 @@ class ReceiptController extends \FPDF {
 	// Page header
 	global $title;
 
-	$this->SetFont('Arial', 'B', 15);
+	$this->SetFont('Arial', 'B', 14);
 	$w = $this->GetStringWidth($title) + 6;
-	$this->SetX((210 - $w) / 2);
+	/*$this->SetX((210 - $w) / 2);
 	$this->SetDrawColor(0, 80, 180);
 	$this->SetFillColor(230, 230, 0);
 	$this->SetTextColor(220, 50, 50);
 	$this->SetLineWidth(1);
-	$this->Cell($w, 9, $title, 1, 1, 'C', true);
-	$this->Ln(10);
+	$this->Cell($w, 9, $title, 1, 1, 'C', true);*/
+	$this->Ln(45);
 	// Save ordinate
 	$this->y0 = $this->GetY();
     }
@@ -41,7 +41,9 @@ class ReceiptController extends \FPDF {
 	$this->SetY(-15);
 	$this->SetFont('Arial', 'I', 8);
 	$this->SetTextColor(128);
-	$this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
+	//$this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
+	$this->Cell(0, 10, 'CSIR', 0, 0, 'C');
+	$this->Ln();
     }
 
     function SetCol($col) {
@@ -69,13 +71,22 @@ class ReceiptController extends \FPDF {
 	}
     }
 
-    function ChapterTitle($num, $label) {
+    function ChapterTitle($label, $names, $score, $comment) {
 	// Title
-	$this->SetFont('Arial', '', 12);
-	$this->SetFillColor(200, 220, 255);
-	$this->Cell(0, 6, "Chapter $num : $label", 0, 1, 'L', true);
-	$this->Ln(4);
+	$this->SetFont('Arial', '', 11);
+	$this->SetTextColor(0, 0, 0);
+	/*$this->Cell(133.5, 5, "Names: $names", 'L', true);
+	$this->Cell(133.5, 5, "ID Number: $idnumber", 'L', true);
+	$this->Cell(133.5, 5, "Overall Score: $score", 'L', true);*/
+	$this->Ln(18);
+	$this->Cell(133.5, 8, "Dear $names,", '0', 'L', false);
+	$this->Ln(10);
+	$this->SetFont('Arial', '', 16);
+	$this->Cell(0, 8, "$label", '0', '0', 'C');
 	// Save ordinate
+	$this->Ln(15);
+	$this->SetFont('Arial', '', 11);
+	$this->MultiCell(0, 6, "$comment", '0','J', false);
 	$this->y0 = $this->GetY();
     }
 
@@ -83,21 +94,23 @@ class ReceiptController extends \FPDF {
 	// Read text file
 	$txt = file_get_contents($file);
 	// Font
-	$this->SetFont('Times', '', 12);
+	$this->SetFont('Times', '', 11);
 	// Output text in a 6 cm width column
-	$this->MultiCell(60, 5, $txt);
-	$this->Ln();
+	$this->MultiCell(0, 0, $txt);
+	$this->Ln(50);
 	// Mention
 	$this->SetFont('', 'I');
-	$this->Cell(0, 5, '(end of excerpt)');
+	$this->Cell(0,5, '___________________________________', '0', 'R', false);
+	$this->Ln(5);
+	$this->Cell(0,5, 'Signature', '0', 'R', false);
 	// Go back to first column
 	$this->SetCol(0);
     }
 
-    function PrintChapter($num, $title, $file) {
+    function PrintChapter($title, $file, $names, $score, $comment) {
 	// Add chapter
 	$this->AddPage();
-	$this->ChapterTitle($num, $title);
+	$this->ChapterTitle($title, $names, $score, $comment);
 	$this->ChapterBody($file);
     }
 
